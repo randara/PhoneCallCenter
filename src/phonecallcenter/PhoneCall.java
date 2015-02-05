@@ -23,4 +23,7 @@ public class PhoneCall implements Callable<String> {
         return "Call from: "+this.from +" to: "+this.to+" is done.";
     }
  
+    public String toString(){
+    	return "call from: "+this.from +" to: "+this.to;
+    }
 }

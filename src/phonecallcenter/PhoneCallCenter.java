@@ -25,20 +25,23 @@ public class PhoneCallCenter {
         executor.execute(futureTask1);
         executor.execute(futureTask2);
         executor.execute(futureTask3);
-         
+        
+        System.out.println("Waiting for calls...");
+        
         while (true) {
             try {
                 if(futureTask1.isDone() && futureTask2.isDone() && futureTask3.isDone()){
                     System.out.println("All calls are Done");
                     
-                    System.out.println(manager.didPhoneCallHappen("a", "b"));
-                    System.out.println(manager.didPhoneCallHappen("b", "a"));
-                    System.out.println(manager.didPhoneCallHappen("x", "y"));
+                    System.out.println("Checking with PhoneCallManager ...");
+                    System.out.println("Did " +call1.toString()+ " happen? "+ manager.didPhoneCallHappen("a", "b"));
+                    System.out.println("Did " +call2.toString()+ " happen? "+ manager.didPhoneCallHappen("b", "a"));
+                    System.out.println("Did " +call3.toString()+ " happen? "+ manager.didPhoneCallHappen("x", "y"));
                     
                     executor.shutdown();
                     return;
                 }
-                //System.out.println("Waiting for calls.");
+                
                 
 				getCallResult(futureTask1);
 				
