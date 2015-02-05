@@ -10,22 +10,18 @@ public class PhoneCallRecord {
 		this.to = to;
 	}
 	
-	public boolean equals(Object obj){
-		if(obj instanceof PhoneCallRecord)
-		{
+	public boolean equals(Object obj) {
+		boolean areEquals = false;
+		
+		if(obj instanceof PhoneCallRecord) {
 			PhoneCallRecord record = (PhoneCallRecord) obj;
-			if(this.from.equals(record.from) && this.to.equals(record.to)){
-				return true;
+			
+			if(this.from.equals(record.from) && this.to.equals(record.to)) {
+				areEquals = true;
 			}
-			else{
-				return false;
-			}
-		}
-		else
-		{
-			return false;
 		}
 		
+		return areEquals;
 	}
 
 }

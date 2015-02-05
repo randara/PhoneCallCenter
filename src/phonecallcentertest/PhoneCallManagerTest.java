@@ -9,11 +9,12 @@ import phonecallcenter.PhoneCallManager;
 
 public class PhoneCallManagerTest {
 
-	static PhoneCallManager manager;
+	private PhoneCallManager manager;
 	
 	@Before
-	public void setUp(){
-		manager = new PhoneCallManager();
+	public void setUp() {
+		manager = PhoneCallManager.getInstance();
+		manager.clearRecords();
 	}
 	
 	@Test
