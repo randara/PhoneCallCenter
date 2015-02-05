@@ -21,6 +21,7 @@ public class PhoneCall implements Callable<Boolean> {
 	@Override
 	public Boolean call() throws Exception {
 		if(this.processCall) {
+			System.out.println("Doing "+this.toString());
 			Thread.sleep(callDuration);
 			manager.phoneCallHappened(this.from, this.to);
 		}
@@ -31,7 +32,7 @@ public class PhoneCall implements Callable<Boolean> {
 	}
 	
 	public String toString() {
-		return "call from: "+this.from +" to: "+this.to;
+		return String.format("call from: %s to: %s", this.from, this.to);
 	}
 	
 	public String getFrom() {

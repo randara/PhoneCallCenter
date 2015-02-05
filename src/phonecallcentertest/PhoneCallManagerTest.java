@@ -14,7 +14,7 @@ public class PhoneCallManagerTest {
 	@Before
 	public void setUp() {
 		manager = PhoneCallManager.getInstance();
-		manager.clearRecords();
+		manager.clearPhoneCallRecordList();
 	}
 	
 	@Test

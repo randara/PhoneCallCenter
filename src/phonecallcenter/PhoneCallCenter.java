@@ -14,6 +14,7 @@ public class PhoneCallCenter {
 		ArrayList<PhoneCall> callList = new ArrayList<PhoneCall>();
 		ArrayList<FutureTask<Boolean>> taskList = new ArrayList<FutureTask<Boolean>>();
 		
+		// Generate random calls
 		callList.add(new PhoneCall("a", "b", 5000, true));
 		callList.add(new PhoneCall("b", "a", 2000, true));
 		callList.add(new PhoneCall("x", "y", 2000, true));
@@ -44,10 +45,10 @@ public class PhoneCallCenter {
 				}
 				if(allCallsDone) {
 					System.out.println("All calls are Done");
-					System.out.println("Checking with PhoneCallManager ...");
+					System.out.println("Checking with PhoneCallManager...");
 					
 					for(PhoneCall call : callList) {
-						System.out.println("Did " +call.toString()+ " happen? "+ manager.didPhoneCallHappen(call.getFrom(), call.getTo()));
+						System.out.println(String.format("Did %s happen? %s", call.toString(), manager.didPhoneCallHappen(call.getFrom(), call.getTo())));
 					}
 					executor.shutdown();
 					return;

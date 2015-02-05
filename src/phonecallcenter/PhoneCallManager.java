@@ -39,7 +39,7 @@ public class PhoneCallManager {
 		return true;
 	}
 	
-	public void clearRecords() {
+	public void clearPhoneCallRecordList() {
 		phoneCallRecordList.clear();
 	}
 	
