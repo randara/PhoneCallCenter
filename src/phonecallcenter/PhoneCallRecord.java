@@ -1,7 +1,7 @@
 package phonecallcenter;
 
 public class PhoneCallRecord {
-
+	
 	final String from;
 	final String to;
 	
@@ -23,5 +23,5 @@ public class PhoneCallRecord {
 		
 		return areEquals;
 	}
-
+	
 }

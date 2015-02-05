@@ -22,7 +22,7 @@ public class PhoneCallManagerTest {
 		Assert.assertFalse(manager.didPhoneCallHappen("from", "to"));
 		Assert.assertFalse(manager.didPhoneCallHappen("to", "from"));
 	}
-
+	
 	@Test
 	public void FromToCall() {
 		manager.phoneCallHappened("from", "to");
