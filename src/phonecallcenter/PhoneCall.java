@@ -5,6 +5,7 @@ import java.util.concurrent.FutureTask;
 
 public class PhoneCall implements Callable<Boolean> {
 
+	// Call will be FutureTask so it can be executed. 
 	private final FutureTask<Boolean> futureTask;
 	
 	private long callDuration;

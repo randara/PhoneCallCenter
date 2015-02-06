@@ -1,8 +1,10 @@
 package phonecallcenter;
-
+// Singleton
 public class PhoneCallManager {
 	
 	private static PhoneCallManager instance = new PhoneCallManager();
+	
+	// Vector is thread safe
 	private static java.util.Vector<PhoneCallRecord> phoneCallRecordList;
 	
 	protected PhoneCallManager() {
@@ -26,12 +28,8 @@ public class PhoneCallManager {
 	 * of this application
 	 */
 	public boolean didPhoneCallHappen(final String from, final String to) {
+		// Return if the call has happened in the case that FROM call TO and not the other way.
 		return PhoneCallManager.phoneCallRecordList.contains(new PhoneCallRecord(from,to));
-	}
-	
-	public static boolean isPhoneNumberValid(String number) {
-		// E.164 regex matcher
-		return true;
 	}
 	
 	public void clearPhoneCallRecordList() {

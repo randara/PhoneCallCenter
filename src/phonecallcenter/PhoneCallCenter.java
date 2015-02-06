@@ -74,6 +74,7 @@ public class PhoneCallCenter {
 			PhoneNumber exampleNumber2;
 			
 			try {
+				// Example PhoneNumbers from https://github.com/googlei18n/libphonenumber
 				exampleNumber = phoneNumberUtil.getExampleNumber(getRandomCountryCode());
 				exampleNumber2 = phoneNumberUtil.getExampleNumber(getRandomCountryCode());
 				list.add(new PhoneCall(getPhoneNumberAsString(exampleNumber), getPhoneNumberAsString(exampleNumber2), getRandomCallDuration(), true));
