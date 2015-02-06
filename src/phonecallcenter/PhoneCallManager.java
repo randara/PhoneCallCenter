@@ -36,7 +36,7 @@ public class PhoneCallManager {
 		 * return PhoneCallManager.phoneCallRecordList.contains(new PhoneCallRecord(from, to)) or
 		 *  PhoneCallManager.phoneCallRecordList.contains(new PhoneCallRecord(to, from));
 		 * 
-		*/
+		 */
 		return PhoneCallManager.phoneCallRecordList.contains(new PhoneCallRecord(from, to));
 	}
 	
