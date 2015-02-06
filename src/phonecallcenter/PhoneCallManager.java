@@ -16,12 +16,12 @@ public class PhoneCallManager {
 	}
 	
 	/*
-	* Record the fact that a phone call happened between 2 numbers, this will
-	* be called by some other class that actually does the phone call
-	*/
+	 * Record the fact that a phone call happened between 2 numbers, this will
+	 * be called by some other class that actually does the phone call
+	 */
 	public void phoneCallHappened(final String from, final String to) {
 		// Manager does not validate if a number is valid
-		PhoneCallManager.phoneCallRecordList.add(new PhoneCallRecord(from,to));
+		PhoneCallManager.phoneCallRecordList.add(new PhoneCallRecord(from, to));
 	}
 	
 	/*
@@ -30,14 +30,14 @@ public class PhoneCallManager {
 	 */
 	public boolean didPhoneCallHappen(final String from, final String to) {
 		/*
-		* Return if the call has happened in the case that FROM call TO and not the other way.
-		* If we wanted to ignore origin and destination we could use:
-		* 
-		* return PhoneCallManager.phoneCallRecordList.contains(new PhoneCallRecord(from,to)) or
-		* 			PhoneCallManager.phoneCallRecordList.contains(new PhoneCallRecord(to,from));
-		* 
+		 * Return if the call has happened in the case that FROM call TO and not the other way.
+		 * If we wanted to ignore origin and destination we could use:
+		 * 
+		 * return PhoneCallManager.phoneCallRecordList.contains(new PhoneCallRecord(from, to)) or
+		 *  PhoneCallManager.phoneCallRecordList.contains(new PhoneCallRecord(to, from));
+		 * 
 		*/
-		return PhoneCallManager.phoneCallRecordList.contains(new PhoneCallRecord(from,to));
+		return PhoneCallManager.phoneCallRecordList.contains(new PhoneCallRecord(from, to));
 	}
 	
 	public void clearPhoneCallRecordList() {
