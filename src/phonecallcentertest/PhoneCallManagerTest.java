@@ -91,4 +91,16 @@ public class PhoneCallManagerTest {
 		}
 		
 	}
+	
+	@Test
+	public void phoneCallNotDoneAndManagerRecordsTest() {
+		PhoneCall call = new PhoneCall("from", "to", 2000, true);
+		executor.execute(call.getFutureTask());
+		
+		if(!call.getFutureTask().isDone()) {
+			Assert.assertFalse(manager.didPhoneCallHappen("from", "to"));
+			Assert.assertEquals(0, manager.phoneCallRecordsCount());
+		}
+		
+	}
 }
