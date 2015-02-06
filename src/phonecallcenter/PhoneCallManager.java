@@ -44,7 +44,7 @@ public class PhoneCallManager {
 		phoneCallRecordList.clear();
 	}
 	
-	public int phoneCallRecordsCount() {
+	public int countPhoneCallRecordList() {
 		return phoneCallRecordList.size();
 	}
 }

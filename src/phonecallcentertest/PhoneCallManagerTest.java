@@ -33,7 +33,7 @@ public class PhoneCallManagerTest {
 		// Manager does not validate if a number is valid
 		Assert.assertFalse(manager.didPhoneCallHappen("from", "to"));
 		Assert.assertFalse(manager.didPhoneCallHappen("to", "from"));
-		Assert.assertEquals(0, manager.phoneCallRecordsCount());
+		Assert.assertEquals(0, manager.countPhoneCallRecordList());
 	}
 	
 	@Test
@@ -42,7 +42,7 @@ public class PhoneCallManagerTest {
 		manager.phoneCallHappened("from", "to");
 		Assert.assertTrue(manager.didPhoneCallHappen("from", "to"));
 		Assert.assertFalse(manager.didPhoneCallHappen("to", "from"));
-		Assert.assertEquals(1, manager.phoneCallRecordsCount());
+		Assert.assertEquals(1, manager.countPhoneCallRecordList());
 	}
 	
 	@Test
@@ -51,7 +51,7 @@ public class PhoneCallManagerTest {
 		manager.phoneCallHappened("to", "from");
 		Assert.assertFalse(manager.didPhoneCallHappen("from", "to"));
 		Assert.assertTrue(manager.didPhoneCallHappen("to", "from"));
-		Assert.assertEquals(1, manager.phoneCallRecordsCount());
+		Assert.assertEquals(1, manager.countPhoneCallRecordList());
 	}
 	
 	@Test
@@ -61,7 +61,7 @@ public class PhoneCallManagerTest {
 		manager.phoneCallHappened("from", "to");
 		Assert.assertTrue(manager.didPhoneCallHappen("from", "to"));
 		Assert.assertTrue(manager.didPhoneCallHappen("to", "from"));
-		Assert.assertEquals(2, manager.phoneCallRecordsCount());
+		Assert.assertEquals(2, manager.countPhoneCallRecordList());
 	}
 	
 	@Test
@@ -71,7 +71,7 @@ public class PhoneCallManagerTest {
 		while(true) {
 			if(call.getFutureTask().isDone()) {
 				Assert.assertTrue(manager.didPhoneCallHappen("from", "to"));
-				Assert.assertEquals(1, manager.phoneCallRecordsCount());
+				Assert.assertEquals(1, manager.countPhoneCallRecordList());
 				return;
 			}
 		}
@@ -85,7 +85,7 @@ public class PhoneCallManagerTest {
 		while(true) {
 			if(call.getFutureTask().isDone()) {
 				Assert.assertFalse(manager.didPhoneCallHappen("from", "to"));
-				Assert.assertEquals(0, manager.phoneCallRecordsCount());
+				Assert.assertEquals(0, manager.countPhoneCallRecordList());
 				return;
 			}
 		}
@@ -99,7 +99,7 @@ public class PhoneCallManagerTest {
 		
 		if(!call.getFutureTask().isDone()) {
 			Assert.assertFalse(manager.didPhoneCallHappen("from", "to"));
-			Assert.assertEquals(0, manager.phoneCallRecordsCount());
+			Assert.assertEquals(0, manager.countPhoneCallRecordList());
 		}
 		
 	}
