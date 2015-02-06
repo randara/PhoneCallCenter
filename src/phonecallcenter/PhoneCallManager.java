@@ -18,11 +18,7 @@ public class PhoneCallManager {
 	* be called by some other class that actually does the phone call
 	*/
 	public void phoneCallHappened(final String from, final String to) {
-		
-		if(isPhoneNumberValid(from) && isPhoneNumberValid(to)) {
-			PhoneCallManager.phoneCallRecordList.add(new PhoneCallRecord(from,to));
-		}
-		
+		PhoneCallManager.phoneCallRecordList.add(new PhoneCallRecord(from,to));
 	}
 	
 	/*
@@ -30,8 +26,7 @@ public class PhoneCallManager {
 	 * of this application
 	 */
 	public boolean didPhoneCallHappen(final String from, final String to) {
-		return isPhoneNumberValid(from) && isPhoneNumberValid(to) &&
-			PhoneCallManager.phoneCallRecordList.contains(new PhoneCallRecord(from,to));
+		return PhoneCallManager.phoneCallRecordList.contains(new PhoneCallRecord(from,to));
 	}
 	
 	public static boolean isPhoneNumberValid(String number) {
