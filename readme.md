@@ -15,3 +15,7 @@ and return whether a phone call has happened.
 
 * mvn clean install
 * java -jar target/PhoneCallCenter-0.0.1-SNAPSHOT.jar
+
+## Notes
+
+* There is no validation of phone numbers
