@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
@@ -14,7 +13,8 @@ public class PhoneCallCenter {
 	private static int MIN_CALLS_VALUE = 5;
 	private static int MAX_CALLS_VALUE = 20;
 	
-	private static ArrayList<PhoneCall> callList = new ArrayList<PhoneCall>();
+	private static int MIN_CALL_DURATION = 2000;
+	private static int MAX_CALL_DURATION = 5000;
 	
 	private static PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
 	
@@ -22,18 +22,12 @@ public class PhoneCallCenter {
 		
 		PhoneCallManager manager = PhoneCallManager.getInstance();
 		
-		ArrayList<FutureTask<Boolean>> taskList = new ArrayList<FutureTask<Boolean>>();
-		
-		prepareCallList();
-		
-		for(PhoneCall call : callList) {
-			taskList.add(new FutureTask<Boolean>(call));
-		}
+		ArrayList<PhoneCall> callList = generateCallList();
 		
 		ExecutorService executor = Executors.newFixedThreadPool(MIN_CALLS_VALUE);
 		
-		for(FutureTask<Boolean> task : taskList) {
-			executor.execute(task);
+		for(PhoneCall call : callList) {
+			executor.execute(call.getFutureTask());
 		}
 		
 		System.out.println("Waiting for calls...");
@@ -44,8 +38,8 @@ public class PhoneCallCenter {
 			try {
 				allCallsDone = true;
 				
-				for(FutureTask<Boolean> task : taskList) {
-					if(!task.isDone()) {
+				for(PhoneCall call : callList) {
+					if(!call.getFutureTask().isDone()) {
 						allCallsDone = false;
 					}
 				}
@@ -68,12 +62,11 @@ public class PhoneCallCenter {
 		
 	}
 	
-	private static void prepareCallList(){
+	private static ArrayList<PhoneCall> generateCallList(){
 		// Generate random calls
-		int max = MAX_CALLS_VALUE + 1;
-		int min = MIN_CALLS_VALUE;
+		int callsToBeGenerated = getRandomIntValue(MAX_CALLS_VALUE, MIN_CALLS_VALUE);
 		
-		int callsToBeGenerated = (int)(Math.random()*(max-min))+min;
+		ArrayList<PhoneCall> list = new ArrayList<PhoneCall>();
 		
 		for(int i = 0; i < callsToBeGenerated; i++) {
 			
@@ -83,13 +76,15 @@ public class PhoneCallCenter {
 			try {
 				exampleNumber = phoneNumberUtil.getExampleNumber(getRandomCountryCode());
 				exampleNumber2 = phoneNumberUtil.getExampleNumber(getRandomCountryCode());
-				callList.add(new PhoneCall(getPhoneNumberAsString(exampleNumber), getPhoneNumberAsString(exampleNumber2), getRandomDuration(), true));
+				list.add(new PhoneCall(getPhoneNumberAsString(exampleNumber), getPhoneNumberAsString(exampleNumber2), getRandomCallDuration(), true));
 			}
 			catch (Exception e) {
 				//e.printStackTrace();
 			}
 			
 		}
+		
+		return list;
 		
 	}
 	
@@ -102,10 +97,11 @@ public class PhoneCallCenter {
 		return String.format("+%d %d",number.getCountryCode(), number.getNationalNumber());
 	}
 	
-	private static int getRandomDuration() {
-		int max = 5000 + 1;
-		int min = 2000;
-		
-		return (int)(Math.random()*(max-min))+min;
+	private static int getRandomCallDuration() {
+		return getRandomIntValue(MAX_CALL_DURATION, MIN_CALL_DURATION);
+	}
+	
+	private static int getRandomIntValue(int max, int min){
+		return (int)(Math.random()*((max+1)-min))+min;
 	}
 }

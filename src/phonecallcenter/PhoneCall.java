@@ -1,9 +1,12 @@
 package phonecallcenter;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.FutureTask;
 
 public class PhoneCall implements Callable<Boolean> {
 
+	private final FutureTask<Boolean> futureTask;
+	
 	private long callDuration;
 	private PhoneCallManager manager;
 	private String from;
@@ -16,6 +19,7 @@ public class PhoneCall implements Callable<Boolean> {
 		this.to = to;
 		this.callDuration = duration;
 		this.processCall = process;
+		this.futureTask = new FutureTask<Boolean>(this);
 	}
 	
 	@Override
@@ -29,6 +33,10 @@ public class PhoneCall implements Callable<Boolean> {
 			System.out.println(this.toString()+" was canceled.");
 		}
 		return Boolean.TRUE;
+	}
+	
+	public FutureTask<Boolean> getFutureTask() {
+		return this.futureTask;
 	}
 	
 	public String toString() {
